@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Rooftop Farewell Hangout</title>
+  <desc id="desc">Abstract placeholder for the farewell hangout memory.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#be185d" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)" rx="48" />
+  <rect x="160" y="180" width="1280" height="620" rx="42" fill="#ffffff" fill-opacity="0.1" />
+  <circle cx="430" cy="490" r="110" fill="#ffffff" fill-opacity="0.15" />
+  <circle cx="720" cy="490" r="110" fill="#ffffff" fill-opacity="0.12" />
+  <circle cx="1010" cy="490" r="110" fill="#ffffff" fill-opacity="0.15" />
+  <circle cx="1300" cy="490" r="110" fill="#ffffff" fill-opacity="0.12" />
+  <rect x="240" y="760" width="1120" height="24" rx="12" fill="#ffffff" fill-opacity="0.16" />
+  <text x="220" y="300" fill="#ffffff" font-family="Space Grotesk, Arial, sans-serif" font-size="82" font-weight="700">Rooftop Farewell Hangout</text>
+  <text x="220" y="360" fill="#f5d0fe" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="30">Friends placeholder</text>
+</svg>

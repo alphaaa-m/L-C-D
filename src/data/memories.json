@@ -1,0 +1,21 @@
+{
+  "_comment": "JSON does not support comments, so the setup guidance lives in these helper fields. Keep your actual memories inside the memories array below.",
+  "imagesDirectory": "Place your personal images inside public/images and reference them as /images/your-file-name.jpg.",
+  "howToEdit": [
+    "Replace the empty memories array with your own entries to load your personal memory collection.",
+    "Each entry should include id, title, date, image, description, occasionType, and tags.",
+    "Optional fields: fullDescription for the fullscreen modal, sortDate in YYYY-MM-DD format for more precise ordering, and year if you want to override the year parsed from date."
+  ],
+  "exampleEntry": {
+    "id": 1,
+    "title": "Trip to the Mountains",
+    "date": "Aug 2024",
+    "sortDate": "2024-08-18",
+    "image": "/images/trip1.jpg",
+    "description": "Weekend trip with college friends after final exams.",
+    "fullDescription": "Weekend trip with college friends after final exams. Add more detail here if you want the modal to tell a fuller story.",
+    "occasionType": "Trip",
+    "tags": ["Trips", "Friends"]
+  },
+  "memories": []
+}

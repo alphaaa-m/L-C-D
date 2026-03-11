@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Hackathon Win</title>
+  <desc id="desc">Abstract placeholder for the hackathon win memory.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#312e81" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)" rx="48" />
+  <polygon points="800,120 920,380 1210,410 990,590 1060,860 800,720 540,860 610,590 390,410 680,380" fill="#ffffff" fill-opacity="0.16" />
+  <circle cx="280" cy="220" r="90" fill="#ffffff" fill-opacity="0.12" />
+  <circle cx="1320" cy="780" r="120" fill="#ffffff" fill-opacity="0.12" />
+  <text x="220" y="830" fill="#ffffff" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">Hackathon Win</text>
+  <text x="220" y="900" fill="#fbcfe8" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="32">Competition placeholder</text>
+</svg>

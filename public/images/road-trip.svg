@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Road Trip After Finals</title>
+  <desc id="desc">Abstract placeholder for the road trip memory.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#0891b2" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)" rx="48" />
+  <path d="M0 700 L300 480 L560 700 Z" fill="#1e293b" />
+  <path d="M360 700 L860 340 L1360 700 Z" fill="#334155" />
+  <path d="M0 760 H1600 V1000 H0 Z" fill="#0f172a" />
+  <rect x="200" y="810" width="1200" height="14" rx="7" fill="#fde68a" />
+  <text x="220" y="240" fill="#ffffff" font-family="Space Grotesk, Arial, sans-serif" font-size="84" font-weight="700">Road Trip After Finals</text>
+  <text x="220" y="310" fill="#cffafe" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="32">Trip placeholder</text>
+</svg>
