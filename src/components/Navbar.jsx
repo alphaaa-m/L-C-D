@@ -5,7 +5,6 @@ const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
   { id: 'timeline', label: 'Timeline' },
   { id: 'gallery', label: 'Gallery' },
-  { id: 'about', label: 'About' },
 ]
 
 function Navbar({ onNavigate, onToggleTheme, theme, viewMode }) {
