@@ -1,21 +1,134 @@
-{
-  "_comment": "JSON does not support comments, so the setup guidance lives in these helper fields. Keep your actual memories inside the memories array below.",
-  "imagesDirectory": "Place your personal images inside public/images and reference them as /images/your-file-name.jpg.",
-  "howToEdit": [
-    "Replace the empty memories array with your own entries to load your personal memory collection.",
-    "Each entry should include id, title, date, image, description, occasionType, and tags.",
-    "Optional fields: fullDescription for the fullscreen modal, sortDate in YYYY-MM-DD format for more precise ordering, and year if you want to override the year parsed from date."
-  ],
-  "exampleEntry": {
+[
+  {
     "id": 1,
-    "title": "Trip to the Mountains",
-    "date": "Aug 2024",
-    "sortDate": "2024-08-18",
-    "image": "/images/trip1.jpg",
-    "description": "Weekend trip with college friends after final exams.",
-    "fullDescription": "Weekend trip with college friends after final exams. Add more detail here if you want the modal to tell a fuller story.",
-    "occasionType": "Trip",
-    "tags": ["Trips", "Friends"]
+    "title": "Trip Murree Bhurban - Road Start",
+    "date": "Dec 2024",
+    "sortDate": "2024-12-03",
+    "image": "/images/events/trip-murree-burban-2024/photo-01.jpeg",
+    "description": "Trip Murree Bhurban 2024 memory from the start of our tour day.",
+    "fullDescription": "This frame captures the beginning energy of trip-murree-burban-2024, when everyone was excited and ready for the full day ahead.",
+    "occasionType": "Trip Murree Bhurban",
+    "tags": ["trip-murree-burban", "tour day", "2024"]
   },
-  "memories": []
-}
+  {
+    "id": 2,
+    "title": "Trip Murree Bhurban - Group Moment",
+    "date": "Dec 2024",
+    "sortDate": "2024-12-04",
+    "image": "/images/events/trip-murree-burban-2024/photo-02.jpeg",
+    "description": "Another moment from trip-murree-burban-2024 with smiles and winter vibes.",
+    "fullDescription": "This was one of the memorable photo stops from trip-murree-burban-2024, where the day felt calm, fun, and full of friendship.",
+    "occasionType": "Trip Murree Bhurban",
+    "tags": ["trip-murree-burban", "friends", "2024"]
+  },
+  {
+    "id": 3,
+    "title": "Trip Murree Bhurban - Night Memory",
+    "date": "Dec 2024",
+    "sortDate": "2024-12-05",
+    "image": "/images/events/trip-murree-burban-2024/photo-03.jpeg",
+    "description": "Closing memory from trip-murree-burban-2024 before returning.",
+    "fullDescription": "This picture closes our trip-murree-burban-2024 chapter, a day filled with travel, photos, and memories we still remember clearly.",
+    "occasionType": "Trip Murree Bhurban",
+    "tags": ["trip-murree-burban", "tour day", "2024"]
+  },
+  {
+    "id": 4,
+    "title": "Sports Culture Day - Festive Look",
+    "date": "Jan 2025",
+    "sortDate": "2025-01-18",
+    "image": "/images/events/sports-culture-day-2025/photo-01.jpeg",
+    "description": "sports-culture-day-2025 memory with festive colors and event excitement.",
+    "fullDescription": "This was one of the bright moments from sports-culture-day-2025, where everyone dressed up and enjoyed the event atmosphere together.",
+    "occasionType": "Sports Culture Day",
+    "tags": ["sports-culture-day", "cultural day", "2025"]
+  },
+  {
+    "id": 5,
+    "title": "Sports Culture Day - Campus Energy",
+    "date": "Jan 2025",
+    "sortDate": "2025-01-19",
+    "image": "/images/events/sports-culture-day-2025/photo-02.jpeg",
+    "description": "A lively frame from sports-culture-day-2025 with the class around campus.",
+    "fullDescription": "This photo reflects the spirit of sports-culture-day-2025, where the campus felt full of celebration and shared joy.",
+    "occasionType": "Sports Culture Day",
+    "tags": ["sports-culture-day", "colour day", "2025"]
+  },
+  {
+    "id": 6,
+    "title": "Sports Culture Day - End of Event",
+    "date": "Jan 2025",
+    "sortDate": "2025-01-20",
+    "image": "/images/events/sports-culture-day-2025/photo-03.jpeg",
+    "description": "Final snapshot from sports-culture-day-2025 before the day wrapped up.",
+    "fullDescription": "One of the last pictures from sports-culture-day-2025, capturing the warm feeling of a fully enjoyed event day.",
+    "occasionType": "Sports Culture Day",
+    "tags": ["sports-culture-day", "friends", "2025"]
+  },
+  {
+    "id": 7,
+    "title": "Movie Date - Before the Show",
+    "date": "Feb 2025",
+    "sortDate": "2025-02-07",
+    "image": "/images/events/movie-date-2025/photo-01.jpeg",
+    "description": "movie-date-2025 memory right before the movie plan started.",
+    "fullDescription": "This photo comes from movie-date-2025 and captures the pre-movie excitement, where simple plans turned into lasting memories.",
+    "occasionType": "Movie Date",
+    "tags": ["movie-date", "movie day", "2025"]
+  },
+  {
+    "id": 8,
+    "title": "Movie Date - Friends Together",
+    "date": "Feb 2025",
+    "sortDate": "2025-02-08",
+    "image": "/images/events/movie-date-2025/photo-02.jpeg",
+    "description": "A candid group vibe from movie-date-2025 with everyone together.",
+    "fullDescription": "A shared memory from movie-date-2025 where laughter, photos, and small moments made the day memorable.",
+    "occasionType": "Movie Date",
+    "tags": ["movie-date", "friends", "2025"]
+  },
+  {
+    "id": 9,
+    "title": "Movie Date - Late Evening Memory",
+    "date": "Feb 2025",
+    "sortDate": "2025-02-09",
+    "image": "/images/events/movie-date-2025/photo-03.jpeg",
+    "description": "Closing memory from movie-date-2025 with the night-time outing feel.",
+    "fullDescription": "This frame from movie-date-2025 captures the cozy evening mood and the feeling of ending the day on a happy note.",
+    "occasionType": "Movie Date",
+    "tags": ["movie-date", "outing", "2025"]
+  },
+  {
+    "id": 10,
+    "title": "Coat Check 2025 - Last MUN with 11 Members",
+    "date": "Mar 2025",
+    "sortDate": "2025-03-14",
+    "image": "/images/events/coat-check-2025/photo-01.jpeg",
+    "description": "coat-check-2025 memory tied to our last MUN chapter with only 11 members.",
+    "fullDescription": "This photo from coat-check-2025 represents our final MUN memory, where our 11-member team made one of the most meaningful last chapters.",
+    "occasionType": "Last MUN (11 Members)",
+    "tags": ["coat-check", "mun", "11 members", "2025"]
+  },
+  {
+    "id": 11,
+    "title": "Last Day 11th Class - Final Day Frame",
+    "date": "Apr 2025",
+    "sortDate": "2025-04-22",
+    "image": "/images/events/last-day-11th-calss-2025/photo-01.jpeg",
+    "description": "last-day-11th-calss-2025 memory from one of our emotional final class moments.",
+    "fullDescription": "This picture from last-day-11th-calss-2025 captures the feeling of reaching the final day together after a long journey.",
+    "occasionType": "Last Day 11th Class",
+    "tags": ["last-day-11th-calss", "last moments", "2025"]
+  },
+  {
+    "id": 12,
+    "title": "Last Group Picture Together",
+    "date": "Apr 2025",
+    "sortDate": "2025-04-23",
+    "image": "/images/events/last-day-11th-calss-2025/photo-02.jpeg",
+    "description": "Our final group picture from last-day-11th-calss-2025, together till the end.",
+    "fullDescription": "This last-day-11th-calss-2025 photo holds the memory of our final group moment, a frame that represents our whole college journey together.",
+    "occasionType": "Last Day 11th Class",
+    "tags": ["last-day-11th-calss", "group picture", "2025"]
+  }
+]

@@ -13,7 +13,7 @@ function Timeline({ memories, onSelect }) {
     return nextCollection
   }, {})
 
-  const years = Object.keys(groups).sort((left, right) => Number(right) - Number(left))
+  const years = Object.keys(groups).sort((left, right) => Number(left) - Number(right))
 
   return (
     <div className="relative pl-0 sm:pl-10">

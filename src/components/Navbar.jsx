@@ -28,7 +28,7 @@ function Navbar({ onNavigate, onToggleTheme, theme, viewMode }) {
           <span>
             <span className="block font-display text-base font-semibold">My College Journey</span>
             <span className="block text-xs font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
-              Moments from the last two years
+              Our class memories from start to finish
             </span>
           </span>
         </button>

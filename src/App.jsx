@@ -24,7 +24,7 @@ const sampleModules = import.meta.glob('./data/sampleMemories.json', {
   eager: true,
 })
 
-const FILTERS = ['All', 'Projects', 'Trips', 'Friends', 'Competitions']
+const DEFAULT_FILTER = 'All'
 
 function normalizeMemories(source) {
   if (Array.isArray(source)) {
@@ -36,10 +36,6 @@ function normalizeMemories(source) {
   }
 
   return []
-}
-
-function normalizeText(value = '') {
-  return String(value).trim().toLowerCase()
 }
 
 function getMemoryYear(memory) {
@@ -82,34 +78,6 @@ function getMemoryTimestamp(memory) {
   return new Date(getMemoryYear(memory), 0, 1).getTime()
 }
 
-function getMemoryFilters(memory) {
-  const normalizedValues = [
-    normalizeText(memory.occasionType),
-    ...(memory.tags ?? []).map((tag) => normalizeText(tag)),
-  ]
-
-  const keywordGroups = {
-    Projects: [
-      'project',
-      'projects',
-      'class project',
-      'presentation',
-      'internship',
-      'coding',
-      'study group',
-    ],
-    Trips: ['trip', 'trips', 'road trip', 'travel', 'outing', 'mountain', 'beach'],
-    Friends: ['friend', 'friends', 'hangout', 'study group', 'community', 'celebration'],
-    Competitions: ['competition', 'competitions', 'hackathon', 'contest', 'winner', 'showcase'],
-  }
-
-  return FILTERS.slice(1).filter((filter) =>
-    normalizedValues.some((value) =>
-      keywordGroups[filter].some((keyword) => value.includes(keyword)),
-    ),
-  )
-}
-
 const rawCustomData = customModules['./data/memories.json']?.default
 const rawSampleData = sampleModules['./data/sampleMemories.json']?.default ?? []
 
@@ -122,7 +90,7 @@ function App() {
   })
   const [viewMode, setViewMode] = useState('timeline')
   const [selectedMemory, setSelectedMemory] = useState(null)
-  const [activeFilter, setActiveFilter] = useState('All')
+  const [activeFilter, setActiveFilter] = useState(DEFAULT_FILTER)
   const [selectedYear, setSelectedYear] = useState(null)
   const [theme, setTheme] = useState(() => {
     if (typeof window === 'undefined') {
@@ -151,11 +119,28 @@ function App() {
           ...memory,
           id: memory.id ?? index + 1,
           year: getMemoryYear(memory),
-          filters: getMemoryFilters(memory),
+          filters: memory.occasionType ? [memory.occasionType] : [],
           fullDescription: memory.fullDescription || memory.description,
         }))
-        .sort((left, right) => getMemoryTimestamp(right) - getMemoryTimestamp(left)),
+        .sort((left, right) => getMemoryTimestamp(left) - getMemoryTimestamp(right)),
     [sourceMemories],
+  )
+
+  const categoryFilters = useMemo(
+    () => [
+      DEFAULT_FILTER,
+      ...new Set(
+        memories
+          .map((memory) => memory.occasionType)
+          .filter((occasionType) => Boolean(occasionType)),
+      ),
+    ],
+    [memories],
+  )
+
+  const effectiveActiveFilter = useMemo(
+    () => (categoryFilters.includes(activeFilter) ? activeFilter : DEFAULT_FILTER),
+    [activeFilter, categoryFilters],
   )
 
   const availableYears = useMemo(
@@ -186,24 +171,25 @@ function App() {
   const filterCounts = useMemo(
     () =>
       Object.fromEntries(
-        FILTERS.map((filter) => [
+        categoryFilters.map((filter) => [
           filter,
-          filter === 'All'
+          filter === DEFAULT_FILTER
             ? yearScopedMemories.length
             : yearScopedMemories.filter((memory) => memory.filters.includes(filter))
                 .length,
         ]),
       ),
-    [yearScopedMemories],
+    [categoryFilters, yearScopedMemories],
   )
 
   const filteredMemories = useMemo(
     () =>
       yearScopedMemories.filter(
         (memory) =>
-          activeFilter === 'All' || memory.filters.includes(activeFilter),
+          effectiveActiveFilter === DEFAULT_FILTER ||
+          memory.filters.includes(effectiveActiveFilter),
       ),
-    [activeFilter, yearScopedMemories],
+    [effectiveActiveFilter, yearScopedMemories],
   )
 
   const deferredMemories = useDeferredValue(filteredMemories)
@@ -289,11 +275,15 @@ function App() {
 
   function resetFilters() {
     startTransition(() => {
-      setActiveFilter('All')
+      setActiveFilter(DEFAULT_FILTER)
       setSelectedYear(null)
       setViewMode('timeline')
     })
   }
+
+  const journeyEnding = memories.length
+    ? memories[memories.length - 1].title
+    : 'Last Memories'
 
   function openRandomMemory() {
     if (!deferredMemories.length) {
@@ -367,7 +357,7 @@ function App() {
                 transition={{ duration: 0.55 }}
               >
                 <Sparkles className="h-4 w-4" />
-                A visual story of growth, friendships, and big leaps
+                A timeline of our real college events and shared moments
               </motion.span>
 
               <motion.h1
@@ -385,9 +375,9 @@ function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.12 }}
               >
-                Moments from the past two years, arranged like a living scrapbook.
-                Scroll through milestones, trips, late-night builds, and the
-                people who shaped the story.
+                This story is built from our own event folders: Trip Murree
+                Bhurban 2024, Sports Culture Day 2025, Movie Date 2025, Coat
+                Check 2025, and Last Day 11th Class 2025.
               </motion.p>
 
               <motion.div
@@ -444,10 +434,10 @@ function App() {
                 </div>
                 <div className="glass-panel rounded-[1.5rem] p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--muted)]">
-                    Active View
+                    Journey Ends With
                   </p>
-                  <p className="mt-3 font-display text-3xl font-semibold capitalize">
-                    {viewMode}
+                  <p className="mt-3 font-display text-2xl font-semibold sm:text-3xl">
+                    {journeyEnding}
                   </p>
                 </div>
               </motion.div>
@@ -487,7 +477,7 @@ function App() {
                     Journey Snapshot
                   </p>
                   <h2 className="mt-2 font-display text-2xl font-semibold">
-                    Three moments to start with
+                    Where the journey begins
                   </h2>
                 </div>
                 <div className="rounded-full bg-indigo-500/12 p-3 text-indigo-600 dark:bg-indigo-400/12 dark:text-indigo-200">
@@ -542,11 +532,11 @@ function App() {
                 Memory Explorer
               </span>
               <h2 className="mt-4 font-display text-3xl font-semibold sm:text-4xl">
-                Move through the story your way
+                Follow every chapter in order
               </h2>
               <p className="mt-3 text-base leading-7 text-[var(--muted)] sm:text-lg">
-                Switch between a vertical timeline and a gallery wall, then narrow
-                the view with animated tags and a year slider.
+                Explore each real event folder in sequence, starting with 2024
+                and ending with our final 2025 moments.
               </p>
             </div>
 
@@ -594,18 +584,18 @@ function App() {
               </div>
 
               <div className="mt-4 flex flex-wrap gap-3">
-                {FILTERS.map((filter) => (
+                {categoryFilters.map((filter) => (
                   <button
                     key={filter}
                     type="button"
                     onClick={() => handleFilterChange(filter)}
                     className={`relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition ${
-                      activeFilter === filter
+                      effectiveActiveFilter === filter
                         ? 'text-white dark:text-slate-950'
                         : 'text-slate-700 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white'
                     }`}
                   >
-                    {activeFilter === filter ? (
+                    {effectiveActiveFilter === filter ? (
                       <motion.span
                         layoutId="active-filter"
                         className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 to-fuchsia-600"
@@ -704,12 +694,11 @@ function App() {
               About This Journey
             </p>
             <h2 className="mt-4 font-display text-3xl font-semibold sm:text-4xl">
-              Built from real milestones that matter
+              Every event became part of our story
             </h2>
             <p className="mt-4 text-base leading-7 text-[var(--muted)]">
-              This space captures the shifts that defined college life: the wins
-              you worked for, the friendships that stayed, and the moments that
-              quietly changed your direction.
+              This collection is now fully based on your real photo folders,
+              organized by event names and years exactly as provided.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -717,9 +706,10 @@ function App() {
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
                   Story Scale
                 </p>
-                <p className="mt-3 font-display text-2xl font-semibold">{memories.length} Moments</p>
+                <p className="mt-3 font-display text-2xl font-semibold">{memories.length} Events</p>
                 <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                  Every card is part of the same narrative arc, from day-one energy to final-year confidence.
+                  Every card points to an actual image from your folders, with
+                  captions aligned to each event name.
                 </p>
               </div>
               <div className="rounded-[1.5rem] border border-[var(--border)] bg-white/60 p-5 dark:bg-white/6">
@@ -727,10 +717,11 @@ function App() {
                   What You Can Explore
                 </p>
                 <p className="mt-3 font-display text-2xl font-semibold">
-                  Timeline + Gallery
+                  Memories We Lived
                 </p>
                 <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                  Dive into the chronology, switch to visual browsing, and open any memory in a full-screen story view.
+                  Trip Murree Bhurban, Sports Culture Day, Movie Date, Coat
+                  Check, and Last Day 11th Class are now mapped as real chapters.
                 </p>
               </div>
             </div>
@@ -741,20 +732,19 @@ function App() {
               Memory Lens
             </p>
             <h2 className="mt-4 font-display text-3xl font-semibold sm:text-4xl">
-              See the same years from different angles
+              From one event folder to the next
             </h2>
             <p className="mt-4 text-base leading-7 text-[var(--muted)]">
-              Use category tags for focus, the year slider for era-based reflection,
-              and the surprise button when you want the journey to pick the next
-              memory for you.
+              Each memory includes a short caption, year-based dating, and a
+              full-screen story view so your events feel connected as one journey.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {[
-                'Filter by Projects, Trips, Friends, and Competitions',
-                'Use the year slider to isolate a specific chapter',
-                'Switch between timeline and masonry gallery',
-                'Open any card for a full-screen memory story',
+                'Photos are organized by folder names and year labels',
+                'Filter by event types generated directly from your real data',
+                'Switch between timeline and gallery for two memory views',
+                'Open any card to read the full caption in story mode',
               ].map((item) => (
                 <div
                   key={item}
